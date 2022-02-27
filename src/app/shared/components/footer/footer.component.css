@@ -1,0 +1,11 @@
+.footer {
+    box-shadow: 0 10px 35px rgb(0 0 0 / 30%);
+    background: #2b3144;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin-bottom: 0;
+}
+
+.footer p {
+    color: #fff;
+}

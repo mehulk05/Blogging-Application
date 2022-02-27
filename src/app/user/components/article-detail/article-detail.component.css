@@ -1,0 +1,249 @@
+.detail-body ::ng-deep img {
+    /* text-align: center;
+  text-align: center;
+  margin: 0 auto;
+  display: flex; */
+    max-width: 100%;
+}
+
+.fa {
+    font-size: 15px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%;
+    padding: 8px 8px 6px 8px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+.fa-google {
+    background: #dd4b39;
+    color: white;
+}
+
+.fa-linkedin {
+    background: #007bb5;
+    color: white;
+}
+
+.fa-tumblr {
+    background: #2c4762;
+    color: white;
+}
+
+.fa-youtube {
+    background: #bb0000;
+    color: white;
+}
+
+.fa-instagram {
+    background: #125688;
+    color: white;
+}
+
+a.fa.fa-share-alt {
+    font-size: 23px;
+    vertical-align: top;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.fa-whatsapp {
+    background: #00b489;
+    color: white;
+}
+
+.fa-tumblr {
+    background: #2c4762;
+    color: white;
+}
+
+p.datetime {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(105 110 120)
+}
+
+.detail-img img {
+    max-width: 100%;
+}
+
+.detail-body ::ng-deep img {
+    display: flex;
+    margin: 0 auto;
+    padding: 1em;
+}
+
+.img-thumbnail {
+    max-width: 70%;
+    width: 70% !important;
+    border: 1px solid gray;
+    padding: 1em;
+    margin: 0 auto;
+    margin-top: 3em;
+}
+
+.audio {
+    border-top: 1px solid gray;
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    padding-top: 1em;
+}
+
+.audio audio {
+    width: 70%;
+}
+
+.slick-slider .slick-track,
+::ng-deep .slick-slider .slick-track {
+    display: flex;
+}
+
+.detail-body {
+    position: relative;
+}
+
+.slick-btn {}
+
+::ng-deep .slick-next {
+    right: 0em;
+}
+
+::ng-deep .slick-prev {
+    left: 0;
+}
+
+::ng-deep button.slick-arrow {
+    position: absolute;
+    top: 50%;
+    display: block;
+    border-radius: 50%;
+    height: 35px;
+    padding-top: 4px;
+    width: 35px;
+    z-index: 555;
+}
+
+::ng-deep .slick-prev:before,
+ ::ng-deep.slick-next:before {
+    font-size: 40px;
+    color: #2b3144;
+}
+
+.comment-section {
+    margin-top: 5em;
+}
+
+.detail-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-del button {
+    margin-right: 1em;
+}
+
+.heart {
+    position: absolute;
+    left: -35px;
+    top: -60px;
+    width: 100px;
+    height: 68px;
+    background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat;
+    background-position: 0 0;
+    cursor: pointer;
+    -webkit-transition: background-position 1s steps(28);
+    transition: background-position 1s steps(28);
+    -webkit-transition-duration: 0s;
+    transition-duration: 0s;
+}
+
+.heart.is-active {
+    -webkit-transition-duration: 1s;
+    transition-duration: 1s;
+    background-position: -2800px 0;
+}
+
+.stage {
+    position: relative;
+    /*  position: absolute;
+  top: 50%;
+  left: -20%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+}
+
+.heart span {
+    padding-left: 80px;
+    position: absolute;
+    padding-top: 41px;
+    white-space: nowrap;
+}
+
+.user-likes {
+    max-width: 70%;
+    margin: 0 auto;
+    margin-bottom: 2em;
+    margin-top: 4em;
+    padding-bottom: 10px;
+}
+
+@media screen and (max-width:550px) {
+    .img-thumbnail {
+        padding: 0;
+        max-width: 85%;
+        width: 85% !important;
+    }
+    .img-thumbnail img {
+        padding: 10px;
+    }
+     ::ng-deep button.slick-arrow {
+        height: 20px;
+        width: 20px;
+        top: 43%;
+    }
+    .audio {
+        padding-bottom: 1em;
+    }
+    .audio audio {
+        max-width: 90%;
+        width: 90%;
+    }
+     ::ng-deep .slick-next {
+        right: -5px;
+    }
+     ::ng-deep .slick-prev {
+        left: -15px;
+    }
+     ::ng-deep .slick-prev:before,
+     ::ng-deep.slick-next:before {
+        font-size: 25px;
+        color: #2b3144;
+    }
+    .detail-title {
+        flex-direction: column;
+    }
+    .edit-del {
+        margin-top: 2em;
+    }
+    .user-likes {
+        max-width: 90%;
+        margin-top: 3em;
+        padding-bottom: 0;
+    }
+}

@@ -1,0 +1,38 @@
+.comment-wrapper {
+    max-width: 70%;
+    margin: 0 auto;
+    margin-top: 2em;
+}
+
+.comment-space {
+    margin-top: 3em;
+}
+
+.comment-space .comments-parent {
+    padding: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 35px rgb(0 0 0 / 24%);
+    border-radius: 7px;
+}
+
+.comment-space .comments-parent h5 {
+    color: #2b3144;
+}
+
+.comment-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment-date span {
+    font-size: 13px;
+}
+
+@media screen and (max-width:550px) {
+    .comment-wrapper {
+        max-width: 90%;
+    }
+    .comment-date span {
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,83 @@
+<div class="container-fluid container1">
+
+    <div class="search-hero search-input-wrapper fadeInUp hidden-md hidden-lg">
+        <label for="search"></label>
+        <input class="form-control" type="text" name="search" id="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search by Title, Category or Author name">
+        <div class="search-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg></div>
+    </div>
+
+
+    <div class="listing-wrapper">
+        <!-- <div class="datetime-wrapper">
+            <div class="datetime">
+                <ng-container *ngIf="selectedDate">
+                    <div class="selected-date">
+                        <h6>Selected: {{selectedDate| date:'MMM, y'}}</h6>
+                        <a href="javascript:void(0)" (click)="clearFilter()">Clear </a>
+                    </div>
+                    <hr>
+
+
+                </ng-container>
+
+                <ul class="date-filter" *ngFor="let item of articleListByDate | keyvalue:keyDescOrder">
+                    <li [ngClass]="item.key ==  selectedDate?'actived' : 'no-actived'" (click)="getArticleByDate(item,item.key)">
+                        {{item.key | date:'MMM, y'}} - ({{item.value.length}})
+                    </li>
+                    <ul>
+
+                    </ul>
+                    <ng-container *ngFor="let i of item.value;let index = j">
+                        <li class="child">
+                            <a [ngClass]="item.key==selectedDate?'active': 'no-active'" href="javascript:void(0)" (click)="editArticle(i)"> {{i.title}}</a>
+                        </li>
+                    </ng-container>
+                </ul>
+            </div>
+        </div> -->
+
+
+        <div class="row mx-0 lisitng" *ngIf="articleList.length>0 && (articleList  | filter: searchText) as result">
+
+
+            <ng-container *ngFor="let aritcle of result | paginate:config">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="article-column" (click)="editArticle(aritcle)">
+                        <div class="article-image" [style.backgroundImage]="'url('+aritcle?.imgUrl+')'">
+
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a class="ShowBlog_textfiordblue__2rKDb" href="javascript:void(0)" (click)="editArticle(aritcle)">{{aritcle?.title}}</a>
+                            </h5>
+                            <span class="text-dark"><i class="fa fa-bookmark"></i> &nbsp; {{aritcle?.category}}</span>
+                            <br>
+                            <span class="text-dark"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path></svg>{{aritcle?.author}}</span>
+                            <br>
+                            <span class="text-muted"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="calendar-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"></path>
+                            </svg>{{aritcle?.date.toDate() | date:'MMM d, y hh:mm a'}}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </ng-container>
+            <div class="pagination-page">
+                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+            </div>
+        </div>
+
+        <div class="row mx-0 lisitng" *ngIf="articleList.length==0">
+            <div class="no-article">
+                <h5 class="text-center">No articles written</h5>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,66 @@
+<header class="main-header">
+
+    <div class="header-wrapper">
+        <h1 class="main-navigation__title"><a href="/">Blog Book</a></h1>
+
+
+        <nav class="main-navigation__header-nav">
+            <ul class="nav-links">
+
+
+
+                <li *ngIf="isAuthenticated">
+                    <a routerLinkActive="active" routerLink="/user/myarticles"> My Articles</a>
+                </li>
+
+                <li *ngIf="isAuthenticated">
+                    <a routerLinkActive="active" routerLink="/user/add-article"> Add Article</a>
+                </li>
+
+                <li *ngIf="isAuthenticated">
+                    <a routerLinkActive="active" routerLink="/user/about"> Profile</a>
+                </li>
+
+
+                <li><a *ngIf="!isAuthenticated" [ngClass]="isAuthenticated? 'hide' : 'show'" class="isAuthenticated" routerLinkActive="active" routerLink="/user/login">Login/Register</a></li>
+                <li><button *ngIf="isAuthenticated" (click)="onLogout()">Logout </button></li>
+            </ul>
+        </nav>
+        <div class="mobile-only-icon">
+            <div class="icon" [ngClass]="isMenuOpen ? 'open' : 'closed'" (click)="openMenu()">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </div>
+    </div>
+
+</header>
+<div class="headerMenu" *ngIf="isMenuOpen" class="headerMenu" [ngClass]="isMenuOpen? 'open': 'closed'">
+    <div class="Menu-heading"><span> Menu </span>
+        <hr class="mb-0">
+    </div>
+    <div class="Menus">
+        <nav>
+            <ul id="navigation" (click)="openMenu()">
+
+
+                <li *ngIf="isAuthenticated">
+                    <a routerLinkActive="active" routerLink="/user/myarticles"> My Articles</a>
+                </li>
+
+                <li *ngIf="isAuthenticated">
+                    <a routerLinkActive="active" routerLink="/user/add-article"> Add Article</a>
+                </li>
+
+                <li *ngIf="isAuthenticated">
+                    <a routerLinkActive="active" routerLink="/user/about"> Profile</a>
+                </li>
+
+
+                <li><a *ngIf="!isAuthenticated" [ngClass]="isAuthenticated? 'hide' : 'show'" class="isAuthenticated" routerLinkActive="active" routerLink="/user/login">Login/Register</a></li>
+                <li><button *ngIf="isAuthenticated" (click)="onLogout()">Logout </button></li>
+            </ul>
+        </nav>
+    </div>
+</div>

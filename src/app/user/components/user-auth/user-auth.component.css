@@ -1,0 +1,15 @@
+.login-box {
+    max-width: 70%;
+    margin: 0 auto;
+}
+
+.button-class {
+    margin-top: 1em;
+}
+
+@media screen and (max-width:767px) {
+    .login-box {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+}

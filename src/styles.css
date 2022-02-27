@@ -1,1 +1,314 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+@import '~ngx-toastr/toastr';
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+span,
+button,
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+p {
+    font-size: 15px;
+}
+
+.detail-title h4 {
+    font-weight: 600;
+}
+
+.title-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid slategrey;
+}
+
+.btn-add {
+    background-color: #2b3144;
+    border-radius: 14px;
+    border-color: #2b3144;
+}
+
+.title-section h5 {
+    font-size: 26px;
+    color: #2b3144;
+}
+
+.header-wrapper {
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.search-hero label {
+    display: none !important;
+}
+
+.header-wrapper {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.add-form .flex-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.add-form .flex-button button {
+    margin-left: 1em;
+}
+
+.add-form .error>div {
+    color: red;
+    font-size: 14px;
+}
+
+.add-form span.error-red {
+    color: red;
+}
+
+.add-form {
+    margin-top: 2em;
+}
+
+.form-control {
+    box-shadow: 0 10px 40px 0 #b0c1d9;
+}
+
+
+/* .header-wrapper .donate-btn {
+    display: none;
+} */
+
+.main-section {
+    margin-bottom: 135px;
+    display: block;
+    position: relative;
+}
+
+.search-hero {
+    max-width: 600px;
+    padding-bottom: 30px;
+    margin: auto;
+}
+
+.search-hero input {
+    -moz-box-shadow: 0 10px 35px rgba(0, 0, 0, .1);
+    -webkit-appearance: none!important;
+    -webkit-box-shadow: 0 10px 35px rgba(0, 0, 0, .1);
+    background: #fff;
+    border: 0;
+    border-radius: 12px;
+    box-shadow: 0 10px 35px rgb(0 0 0 / 18%);
+    color: #6c757d;
+    height: 3.3rem;
+    outline: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 1rem 1rem 1rem 3rem;
+    width: calc(100% - 4rem);
+    line-height: normal;
+}
+
+.form-control {
+    box-shadow: 0 10px 40px 0 #B0C1D9;
+}
+
+.search-button svg {
+    color: rgba(108, 117, 125, .6);
+    margin-left: 15px;
+    position: absolute;
+    top: 1.2em;
+    transition: all .2s ease-in-out;
+}
+
+.fadeInUp {
+    -webkit-animation-duration: .45s;
+    animation-duration: .45s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+}
+
+.column-coloumn {
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    box-shadow: 0 2px 0 rgb(90 97 105 / 11%), 0 4px 8px rgb(90 97 105 / 8%), 0 10px 10px rgb(90 97 105 / 0%), 0 7px 70px rgb(90 97 105 / 38%);
+    border-radius: .25rem;
+    /* box-shadow: 0 2px 0 rgb(90 97 105 / 11%), 0 4px 8px rgb(90 97 105 / 12%), 0 10px 10px rgb(90 97 105 / 6%), 0 7px 70px rgb(90 97 105 / 10%); */
+    background-color: #fff;
+    border: none;
+    border-radius: .625rem;
+    margin-bottom: 4em;
+    cursor: pointer;
+}
+
+.column-coloumn h5 {
+    margin-top: 15px;
+    height: 50px;
+    max-height: 50px;
+    display: block;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.column-coloumn a {
+    color: #3d5170!important;
+}
+
+.column-coloumn p {
+    display: block;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 4.6em;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    font-weight: 500;
+    color: #5a6169;
+    font-size: 15px;
+}
+
+.column-coloumn span {
+    font-weight: 500;
+    font-size: 15px;
+    display: inline;
+}
+
+.column-coloumn svg {
+    display: inline-block;
+    font-size: inherit;
+    height: 1em;
+    overflow: visible;
+    vertical-align: -.125em;
+    width: .875em;
+    margin-right: 10px;
+}
+
+.column-coloumn .description {
+    max-height: 70px;
+    height: 70px;
+}
+
+.column-coloumn .article-image {
+    background-image: url(https://neilpatel.com/wp-content/uploads/2017/08/blog.jpg);
+    height: 200px;
+    width: 100%;
+    background-position: center;
+    background-size: contain;
+}
+
+.container1 {
+    max-width: 95%;
+    margin: 0 auto;
+}
+
+.row.lisitng {
+    justify-content: center;
+}
+
+.pagination-page {
+    width: 100%;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+button.btn.btn-primary a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.error,
+.error div {
+    color: red;
+}
+
+@media screen and (max-width:767px) {
+    .main-section {
+        margin-bottom: 230px;
+    }
+    .header-wrapper .donate-btn {
+        display: block;
+    }
+    .header-wrapper {
+        width: 90%;
+        justify-content: space-between;
+    }
+    .search-hero input {
+        margin: 0;
+        width: 100%;
+    }
+    .main-navigation__title {
+        font-size: 24px;
+    }
+    .header-wrapper button {
+        margin-left: 1em;
+    }
+    .social.vertical-center {
+        margin-top: 1em;
+    }
+    .social.contact-us.mb-4 {
+        margin-bottom: 10px !important;
+    }
+    .mobile-only-icon {
+        top: 11px !important
+    }
+    .row.lisitng .col-sm-12 {
+        padding: 0;
+    }
+}
+
+
+/* @media screen and (max-width:767px) {
+    .list-section {
+        padding: 1em 10px;
+    }
+    .title-section h5 {
+        font-size: 20px;
+    }
+    table thead th,
+    table tbody td {
+        font-size: 14px;
+    }
+}
+
+pre.ql-syntax {
+    background: gainsboro;
+    padding: 1em 1em;
+} */

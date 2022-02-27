@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="title-section">
+        <h5>
+            Profile Detail
+        </h5>
+
+        <button class="btn btn-add btn-primary" (click)="goBack()">Go Back</button>
+    </div>
+    <div class="add-form" *ngIf="userData">
+        <div class="card-view">
+            <div class="profile-view">
+                <div class="profile-img">
+                    <div class="img">
+                        <img [src]="userData?.img ? userData?.img : 'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8='" />
+                    </div>
+                </div>
+                <div class="profile-content">
+                    <h4>{{userData?.name}} </h4>
+                    <div class="content"><label>Email : </label>
+                        <p>{{userData?.email}}</p>
+                    </div>
+                    <div class="content"><label>Date of Birth : </label>
+                        <p>{{userData?.dob.toDate() | date:'MMM d, y'}}</p>
+                    </div>
+                    <div class="content"><label>Bio : </label>
+                        <p>{{userData?.bio}}</p>
+                    </div>
+
+                    <button class="bg-white"><a  [routerLink]="['/user','edit-profile',userData.uid]" >Edit Account</a></button>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

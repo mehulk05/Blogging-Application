@@ -1,0 +1,65 @@
+.user-form-wrapper {
+    display: flex;
+}
+
+.user-form-wrapper .left-part {
+    min-width: 25%;
+}
+
+.user-form-wrapper img {
+    border-radius: 50%;
+    border: 2px dotted gainsboro;
+    max-width: 200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    min-width: 140px
+}
+
+.user-form-wrapper .fileupload {
+    margin: 0 auto;
+    max-width: 60%;
+}
+
+.user-form-wrapper .right-part {
+    max-width: 55%;
+    margin: 0 auto;
+}
+
+.left-part {
+    padding-top: 2em;
+}
+
+span.edit-button.icon-ic_edit {
+    text-align: center;
+    /* width: 100%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+}
+
+span.edit-button.icon-ic_edit .fa {
+    padding-right: 10px;
+}
+
+.button-sp button {
+    margin-right: 1em;
+    margin-top: 1em;
+}
+
+.button-sp button a {
+    color: #fff;
+}
+
+@media screen and (max-width:767px) {
+    .user-form-wrapper {
+        flex-direction: column;
+    }
+    .left-part {
+        margin-bottom: 2em;
+    }
+    .user-form-wrapper .right-part {
+        max-width: 90%;
+    }
+}

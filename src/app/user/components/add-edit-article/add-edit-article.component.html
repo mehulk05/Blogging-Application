@@ -1,0 +1,211 @@
+<div class="container">
+    <div class="title-section">
+        <h5>
+            Add Book
+        </h5>
+
+        <button class="btn btn-add btn-primary" (click)="goBack()">Go Back</button>
+    </div>
+    <div class="add-form">
+        <form class="login-box" [formGroup]="bookForm" (ngSubmit)="submitForm()">
+            <div class="form-row row">
+                <div class="col-md-12">
+                    <label>Title<span class="error-red">*</span></label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="title">
+                        <div class="error" *ngIf="f.title.invalid && ( (f.title.dirty || f.title.touched))">
+                            <div *ngIf="f.title.errors.required">
+                                Title is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row row">
+                <div class="col-md-12">
+                    <label>Description<span class="error-red">*</span></label>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="4" formControlName="description">
+
+                        </textarea>
+
+                        <div class="error" *ngIf="f.description.invalid && ( (f.description.dirty || f.description.touched))">
+                            <div *ngIf="f.description.errors.required">
+                                description is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row row">
+                <div class="col-md-12 col-sm-12">
+                    <label>Catrgory<span class="error-red">*</span></label>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="category">
+                        <div class="error" *ngIf="f.category.invalid && ( (f.category.dirty || f.category.touched))">
+                            <div *ngIf="f.category.errors.required">
+                                Catrgory name is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="border-image">
+
+                <div class="row mx-0">
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="form-row row">
+                            <div class="col-md-12">
+                                <label>Add Image and Voice Note<span class="error-red">*</span></label><br>
+
+                                <span class="small">You can add maximum of 5 Images and voice note</span>
+
+                            </div>
+                        </div>
+                        <div class="fileupload">
+                            <div *ngIf="currentFileUpload" class="progress mt-2">
+                                <div class="progress-bar progress-bar-info" role="progressbar" attr.aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{ width: percentage + '%' }">
+                                    {{ percentage }}%
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row row">
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <input id="file-input" type="file" #myFileInput accept="image/png, image/gif, image/jpeg" (change)="selectFile($event)" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+
+                        <div class="form-row row" *ngIf="f.thumbnail.value && !isLoading">
+                            <label>
+                                Record Voice Note or Add from local
+                            </label>
+
+                            <div class="buttons" *ngIf="!audioBlobUrl">
+                                <div class="form-group">
+                                    <button class="btn btn-primary" (click)="showOptionForRecord('local')" type="button">Add from Local</button>
+                                    <button class="btn btn-primary" (click)="showOptionForRecord('record')" type="button">Record</button>
+                                </div>
+                            </div>
+
+                            <div class="recorder-section">
+                                <div class="local" *ngIf="recordOptions == 'local'">
+                                    <input type="file" name="myImage" #myAudioFile accept="audio/*" (change)="selectAudioFile($event)" />
+                                </div>
+
+                                <div class="record" *ngIf="recordOptions == 'record'">
+                                    <div>
+
+                                        <div>
+                                            <button type="button" class="btn start-button" *ngIf="!isAudioRecording && !audioBlobUrl" (click)="startAudioRecording()">Start  Recording</button>
+                                            <button type="button" class="btn stop-button" *ngIf="isAudioRecording && !audioBlobUrl" (click)="stopAudioRecording()">Stop  Recording</button>
+                                            <button type="button" class="btn cancel-button" *ngIf="!isAudioRecording && audioBlobUrl" (click)="clearAudioRecordedData()">Clear  Recording</button>
+                                            <button type="button" class="btn download-button" *ngIf="!isAudioRecording && audioBlobUrl" (click)="downloadAudioRecordedData()">Download  Recording</button>
+                                            <button [disbaled]="isDataPushedToDb" [ngClass]="isDataPushedToDb? 'disabled' : 'no-disabled'" *ngIf="audioName" class="btn btn-primary upload-btn" type="button" (click)="uploadImageAndVoice()">
+                                                Upload
+                                            </button>
+                                            <div id="audioTimer" *ngIf="isAudioRecording && !audioBlobUrl"> {{ audioRecordedTime }} </div>
+                                            <audio *ngIf="!isAudioRecording && audioBlobUrl" controls>
+                                            <source [src]="audioBlobUrl" type="audio/mp3">
+                                          </audio>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="w-100" *ngIf="f.thumbnail.value">
+                <div class="fileupload">
+                    <div *ngIf="currentAudioFile" class="progress mt-2">
+                        <div class="progress-bar progress-bar-info" role="progressbar" attr.aria-valuenow="{{ percentage2 }}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{ width: percentage2 + '%' }">
+                            {{ percentage2 }}%
+                        </div>
+                    </div>
+                </div>
+                <div class="button-class">
+                    <button class="btn  btn-warning clear" (click)="resetAll()">
+                        Clear All
+                    </button>
+
+                    <button class="btn btn-primary" [ngClass]="isaddAnotherEnable && galleryUrls.length<5? 'no-disbaled' : 'disabled'" type="button" (click)="AddAnother()">
+                        Add Another
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="img-preview" *ngIf="galleryUrls.length>0">
+                <div class="preview-title">
+                    <h5>
+                        Preview
+                    </h5>
+                </div>
+                <div class="row mx-0">
+                    <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let img of galleryUrls;let i =index">
+                        <div class="images-wrapper">
+                            <div class="img">
+                                <img src={{img.img}} />
+                                <a href="javascript:void(0)" (click)="deleteImg(i)">
+                                    <i class="fa fa-trash-o"></i>
+                                </a>
+                            </div>
+
+                            <div class="audio-wrapper">
+                                <div class="audio" *ngIf="img?.audio">
+                                    <audio controls>
+                                <source [src]="img?.audio" type="audio/mp3">
+                              </audio>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="flex-button">
+                <button type="submit" class="btn btn-common  btn-success butn" [disabled]="!bookForm.valid || galleryUrls.length==0">Save</button>
+                <button type="button" class="btn btn-common  btn-danger butn" (click)="goBack()">Cancel</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Warning</h4>
+                <button type="button" class="close" data-dismiss="modal" (click)="hideModal()">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Your Book Image is not uploaded completely. If you go back you changes will not be saved. Please wait for a while image upload is in progress
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="hideModal()">Cancel</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="goToBook()">Go Back</button>
+            </div>
+
+        </div>
+    </div>
+</div>
