@@ -25,14 +25,10 @@ export class ProfileComponent implements OnInit {
   loadUserProfile(){
     this.crudService.startLoader()
     this.crudService.getSingle(this.author.uid,"users").then(data=>{
-      console.log(data)
       this.crudService.stopLoader()
       this.userData =  data.data()
-      console.log(this.userData)
-     // this.userData["img"]  = this.userData?.img  ? this.userData?.img  : 'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8='
     })
     .catch(e=>{
-      console.log(e)
       this.toastService.error("Error Fetching Article", "Error")
       this.crudService.stopLoader()
     })

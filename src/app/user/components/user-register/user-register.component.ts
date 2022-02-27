@@ -51,16 +51,11 @@ export class UserRegisterComponent implements OnInit {
     }
     this.crudService.startLoader();
     this.angularFireAuth.createUserWithEmailAndPassword(userData.email,userData.password).then(data=>{
-      console.log(data)
-      console.log(userData)
       userData.uid = data.user.uid
       this.createUserInDb(userData)
-      console.log(this.angularFireAuth.currentUser)
     })
     .catch((e)=>{
-      console.log(e)
       this.crudService.stopLoader()
-      console.log(e)
       this.toastr.error(e.message, 'Error');
     })
   }
@@ -75,7 +70,6 @@ export class UserRegisterComponent implements OnInit {
 
     }, e => {
       this.crudService.stopLoader();
-      console.log(e)
       this.toastr.error(e.message, 'Error');
     })
   }

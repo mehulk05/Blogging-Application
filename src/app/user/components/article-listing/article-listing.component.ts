@@ -36,9 +36,7 @@ export class ArticleListingComponent implements OnInit {
     const token:any = await this.localStorageService.getDataFromIndexedDB("userData")
     this.crudService.startLoader()
     this.crudService.getAll("article").subscribe(async data => {
-      console.log(data)
       this.articleList = await data.map(e => {
-        console.log(e.payload.doc.data())
         let desc
         desc = this.extractContent(e.payload.doc.data()['description'])
         let imgUrl = e.payload.doc.data()['thumbnail'] ? e.payload.doc.data()['thumbnail'] : 'https://g99plus.b-cdn.net/AEMR/assets/images/nopreview.jpeg'
@@ -56,29 +54,13 @@ export class ArticleListingComponent implements OnInit {
           thumbnail:e.payload.doc.data()["thumbnail"]
         };
       })
-      // this.articleList = this.articleList.filter(data => {
-
-      //   data.thumbnail = data.thumbnail?data.thumbnail : data.imgUrl
-      //   return data.isPublic == true
-      // })
-
-
-      // let grouped_items = _.groupBy(this.articleList, (b: any) =>
-      //   moment(b.date.toDate()).startOf('month').format('YYYY/MM'));
-
-      // _.values(grouped_items)
-      //   .forEach(arr => arr.sort((a, b) => moment(a.date).day() - moment(b.date).day()));
-
-      // this.articleListByDate = grouped_items
       this.articleList.sort(function(a,b){
         var dateA = new Date(a.date.toDate()).getTime();
         var dateB = new Date(b.date.toDate()).getTime();
-        console.log(dateA,dateB)
         return dateB > dateA ? 1 : -1;
 
       });
       this.crudService.stopLoader()
-      console.log(this.articleList)
     }, e => {
       this.crudService.stopLoader()
     });

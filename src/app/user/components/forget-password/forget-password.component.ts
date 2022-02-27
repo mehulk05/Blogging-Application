@@ -35,7 +35,6 @@ export class ForgetPasswordComponent implements OnInit {
     })
       .catch(e => {
         this.isLoading = false
-        console.log(e)
         this.error = e.message
         this.toastService.error(e.message,"Error")
         this.auth.stopLoader()

@@ -36,13 +36,11 @@ export class MyArticlesComponent implements OnInit {
     const token:any = await this.localStorageService.getDataFromIndexedDB("userData")
     this.crudService.startLoader()
     this.crudService.getMyArticles("article",token.uid).subscribe(async data => {
-      console.log(data)
+
       this.articleList = await data.map(e => {
-        console.log(e.payload.doc.data())
         let desc
         desc = this.extractContent(e.payload.doc.data()['description'])
         let imgUrl = e.payload.doc.data()['thumbnail'] ? e.payload.doc.data()['thumbnail'] : 'https://neilpatel.com/wp-content/uploads/2017/08/blog.jpg'
-        console.log(imgUrl)
         return {
           key: e.payload.doc.id,
           title: e.payload.doc.data()['title'],
@@ -60,12 +58,10 @@ export class MyArticlesComponent implements OnInit {
       this.articleList.sort(function(a,b){
         var dateA = new Date(a.date.toDate()).getTime();
         var dateB = new Date(b.date.toDate()).getTime();
-        console.log(dateA,dateB)
         return dateB > dateA ? 1 : -1;
 
       });
       this.crudService.stopLoader()
-      console.log(this.articleList)
     }, e => {
       this.crudService.stopLoader()
     });

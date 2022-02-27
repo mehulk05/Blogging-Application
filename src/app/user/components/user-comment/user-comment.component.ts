@@ -21,14 +21,12 @@ export class UserCommentComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.userId =  await this.localStorageService.getDataFromIndexedDB("userData")
     this.getComment()
-    console.log(this.articleData)
   }
 
   getComment(){
     this.crudService.startLoader()
     this.crudService.getSingle(this.articleData.id,"comment").then(data=>{
       this.crudService.stopLoader()
-      console.log(data.data())
       this.commentData =  data.data()
       if(this.commentData){
         this.AllPostComments = this.commentData.commentData
@@ -36,7 +34,6 @@ export class UserCommentComponent implements OnInit {
     })
     .catch(e=>{
       this.crudService.stopLoader()
-      console.log(e)
       this.toastService.error(e?.message,"Error")
     })
   }
@@ -67,12 +64,10 @@ export class UserCommentComponent implements OnInit {
     this.crudService.startLoader()
     this.crudService.createCommentById("comment",commentData,commentForm.postId).then(data=>{
 
-      console.log(data)
       this.getComment()
     })
     .catch(e=>{
       this.crudService.stopLoader()
-      console.log(e)
       this.toastService.error(e?.message,"Error")
     })
 

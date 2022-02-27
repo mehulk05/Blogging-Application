@@ -138,7 +138,6 @@ export class AddEditArticleComponent implements OnInit {
     this.crudService.getSingle(book_id, this.firestoreKey).then(data => {
       this.crudService.stopLoader()
       if (data.data()) {
-        console.log(data.data())
         this.bookData = data.data()
         this.bookData.key = data.id
         this.isLoading = false
@@ -177,9 +176,7 @@ export class AddEditArticleComponent implements OnInit {
     this.isaddAnotherEnable = true
     this.isUploading = true
     this.percentage = 0
-    console.log(event)
     const file = event.target.files[0];
-    console.log(file, file.size)
     if (file) {
 
       if (!file.type.toLowerCase().includes("image")) {
@@ -251,7 +248,6 @@ export class AddEditArticleComponent implements OnInit {
       author: this.author.name,
     }
 
-    console.log(bookObject)
 
     if (this.book_id) {
       this.updateBook(bookObject)
@@ -269,12 +265,10 @@ export class AddEditArticleComponent implements OnInit {
         this.crudService.stopLoader()
       }, e => {
         this.crudService.stopLoader()
-        console.log(e)
         this.toastService.error("Error Creating Article", "Error")
       })
     }
     catch (e) {
-      console.log(e, e.message)
       this.toastService.error(e.message, "Error")
       this.crudService.stopLoader()
     }
@@ -292,7 +286,6 @@ export class AddEditArticleComponent implements OnInit {
       })
     }
     catch (e) {
-      console.log(e, e.message)
       this.toastService.error(e.message, "Error")
       this.crudService.stopLoader()
     }
@@ -423,7 +416,6 @@ export class AddEditArticleComponent implements OnInit {
       img: this.bookForm.value.thumbnail
     }
     this.galleryUrls.push(ImageAndAudio)
-    console.log(this.galleryUrls)
 
   }
 
@@ -434,7 +426,6 @@ export class AddEditArticleComponent implements OnInit {
         img: this.bookForm.value.thumbnail
       }
       this.galleryUrls.push(ImageAndAudio)
-      console.log(this.galleryUrls)
 
     }
     this.bookForm.patchValue({
@@ -480,14 +471,12 @@ export class AddEditArticleComponent implements OnInit {
   }
   uploadImageAndVoice() {
     const blob = new Blob([this.audioBlob], { type: 'audio/mp3' });
-    console.log(this.audioName)
     blob["name"] = this.audioName
     this.uploadAudio(blob)
   }
 
   selectAudioFile(e) {
     const file = e.target.files[0];
-    console.log(file)
     if (!file.type.toLowerCase().includes("audio")) {
       this.toastService.error("Please select Audio File", "Error")
       this.myAudioFile.nativeElement.value = '';

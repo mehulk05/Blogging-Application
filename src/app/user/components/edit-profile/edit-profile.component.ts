@@ -58,7 +58,6 @@ export class EditProfileComponent implements OnInit {
     });
 
     this.activatedRoute.params.subscribe(data=>{
-      console.log(data)
       this.userId =  data.id
       this.loadUserProfile(data.id)
     })
@@ -73,12 +72,11 @@ export class EditProfileComponent implements OnInit {
       img:this.userForm.value.img,
     }
     this.crudService.createCommentById(this.firestoreKey,userFormData,this.userId).then(data=>{
-      console.log(data)
+
       this.toastr.success("Profile Updated Successfully !",  "Success")
       this.router.navigateByUrl("/user/about")
 
     }).catch(e=>{
-      console.log(e)
       this.toastr.error(e.message,"Error")
     })
   }
@@ -88,7 +86,6 @@ export class EditProfileComponent implements OnInit {
     this.crudService.getSingle(id, this.firestoreKey).then(data => {
       this.crudService.stopLoader()
       if (data.data()) {
-        console.log(data.data())
         this.userData = data.data()
         this.setUserFormValue()
       }}, e => {
@@ -107,7 +104,6 @@ export class EditProfileComponent implements OnInit {
       img:this.userData?.img ? this.userData?.img  : ""
     })
 
-    console.log(this.userData.dob, this.userData.dob.toDate())
   }
   onFileChange(event) {
     this.myFileInput.nativeElement.value = '';
@@ -117,9 +113,7 @@ export class EditProfileComponent implements OnInit {
   selectFile(event): void {
     this.isUploading = true
     this.percentage = 0
-    console.log(event)
     const file = event.target.files[0];
-    console.log(file, file.size)
     if (file) {
 
       if (!file.type.toLowerCase().includes("image")) {
@@ -149,7 +143,6 @@ export class EditProfileComponent implements OnInit {
                   img:url
                 })
                 this.imgUrl = url
-                console.log(url)
               }
               //this.addUrlToEditor(url)
 

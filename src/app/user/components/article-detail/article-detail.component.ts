@@ -39,7 +39,6 @@ export class ArticleDetailComponent implements OnInit {
     this.crudService.startLoader()
     this.crudService.getSingle(article_id,"article").then(data=>{
       this.articleData =  data.data()
-      console.log(this.articleData)
       this.articleData.id =  data.id
       this.setPostLikeData()
       this.crudService.stopLoader()
@@ -79,7 +78,6 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   slickInit(e) {
-    console.log('slick initialized');
   }
 
   hideModal() {
@@ -123,15 +121,14 @@ export class ArticleDetailComponent implements OnInit {
     else{
       this.likeCount --
       this.likedBy = this.likedBy.filter(item=>{
-        console.log(item.uid ,this.author.uid)
+
        return  item.uid !=  this.author.uid
       })
 
 
     }
-    console.log( this.likedBy)
+
     this.updateArticle()
-    console.log(this.isLikeStatus)
   }
 
   updateArticle(){
@@ -149,9 +146,8 @@ export class ArticleDetailComponent implements OnInit {
       likedBy : this.likedBy
     }
     this.crudService.createCommentById("article",likeBy,this.articleData.id).then(data=>{
-      console.log(data)
     }).catch(e=>{
-      console.log(e)
+      this.toastService.error(e.message,"Error")
     })
   }
 

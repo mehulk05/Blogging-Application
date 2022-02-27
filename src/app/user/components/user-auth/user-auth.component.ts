@@ -36,8 +36,6 @@ export class UserAuthComponent implements OnInit {
         email: ["", Validators.required],
         password: ["", [Validators.required]],
       });
-      this.userData = await this.localStorgaeService.getDataFromIndexedDB("userData")
-      console.log(this.userData)
       if(this.userData){
         this.router.navigateByUrl("/user/article")
       }
